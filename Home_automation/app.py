@@ -1,8 +1,11 @@
 from flask import Flask, render_template, request
+import paho.mqtt.publish as pub
+from connector import bridge
 import serial
 from time import sleep
 
 app = Flask(__name__)
+
 
 @app.route("/")
 def index():
@@ -11,6 +14,7 @@ def index():
 @app.route("/control",methods=["POST"])
 def control():
     if request.method == "POST":
+        #bridge()
         command = request.form.get('light')
         print(command)
         board.write(command.encode())
