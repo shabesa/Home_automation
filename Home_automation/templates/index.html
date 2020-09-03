@@ -5,6 +5,7 @@
   <!-- imports -->
   <title>Controls</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
   <script type=text/javascript src="{{url_for
   ('static', filename='js/button.js') }}"></script>
 
@@ -13,8 +14,8 @@
         <header><h1>Arduino Control</h1></header> 
     </div>
 <body>
-  <button  name="light" value="on" type="button">ON</button>
-  <button  name="light" value="off" type="button">OFF</button>
+    <button  name="light" value="on" type="button">ON</button>
+    <button  name="light" value="off" type="button">OFF</button>
 </body>
 
 </html>

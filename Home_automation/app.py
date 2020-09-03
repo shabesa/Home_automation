@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
-import paho.mqtt.publish as pub
-import paho.mqtt.subscribe as sub
+from connector import send, recieve
 import serial
 from time import sleep
 
@@ -19,21 +18,14 @@ def control():
         board.write(command.encode())
         '''publish and subscribe via mqtt'''
         if command == "on":
-            pub.single("command", payload="on", qos=0, retain=False,
-                       hostname="localhost", port=1883, client_id="outTopic",
-                       keepalive=60, will=None, auth=None, tls=None,
-                       transport="tcp")
-            msg = sub.simple("feedback", qos=0, msg_count=1, retained=False, hostname="localhost",
-                       port=1883, client_id="inTopic", keepalive=60, will=None, auth=None, tls=None)
-            print("%s %s" % (msg.topic, msg.payload))
+            send("on")
+            recieve("feedback")
         
         elif command == "off":
-            pub.single("command", payload="off", qos=0, retain=False,
-                       hostname="localhost", port=1883, client_id="outTopic",
-                       keepalive=60, will=None, auth=None, tls=None,
-                       transport="tcp")
+            send("off")
+            recieve("feedback")
    
-   return "success"   
+    return "success"   
 
 
 
