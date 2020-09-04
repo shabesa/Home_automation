@@ -25,7 +25,8 @@ def control():
             send("off")
             recieve("feedback")
    
-    return "success"   
+    return "success"
+    sleep(2)
 
 
 
@@ -34,4 +35,5 @@ if __name__=='__main__':
     board = serial.Serial("/dev/ttyUSB0", 9600)
     print(board)
     sleep(2)
+    app.debug=True
     app.run()
