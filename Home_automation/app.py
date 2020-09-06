@@ -34,12 +34,11 @@ def control():
    
     return "success"
     sleep(2)
+    
 '''mqtt mesdage subscribe'''
 @mqtt.on_connect()
 def handle_connect(client, userdata, flags, rc):
     mqtt.subscribe('feedback')
-
-
 
 @mqtt.on_message()
 def handle_mqtt_message(client, userdata, message):
