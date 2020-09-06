@@ -25,7 +25,7 @@ def control():
         print(command)
         '''writing to control board'''
         board.write(command.encode())
-        '''publish and subscribe via mqtt'''
+        '''publish via mqtt'''
         if command == "on":
             mqtt.publish('command', 'on')
         
@@ -34,7 +34,7 @@ def control():
    
     return "success"
     sleep(2)
-
+'''mqtt mesdage subscribe'''
 @mqtt.on_connect()
 def handle_connect(client, userdata, flags, rc):
     mqtt.subscribe('feedback')
